@@ -2,15 +2,9 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: true,
-      trim: true,
-      minlength: [3, "Name must be at least 3 characters"],
-    },
     email: {
       type: String,
-      match: [/@kiit.ac.in$/, "Only KIIT students can login"], // Use regex, not string
+      match: [/@kiit.ac.in$/, "Only KIIT students can login"],
       unique: true,
       trim: true,
       lowercase: true,
@@ -20,32 +14,15 @@ const userSchema = new mongoose.Schema(
       minlength: [6, "Password must be at least 6 characters"],
       required: true,
     },
-    branch: {
-      type: String,
-      required: true,
+    lastLogin: {
+      type: Date,
+      default: null,
     },
-    role: {
-      type: String,
-      enum: ["user", "moderator", "admin"],
-      default: "user",
-    },
-    skills: {
-      type: [String],
-      default: [],
-    },
-    batch: Number,
-    helpsAsked: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Help",
-      },
-    ],
-    helpsGiven: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Help",
-      },
-    ],
+    profileId : {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Profile",
+      default: null,
+    }
   },
   {
     timestamps: true,

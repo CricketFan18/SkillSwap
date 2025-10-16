@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
 export default async function connectDB() {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log(`MongoDB connected: ${conn.connection.host}`);
+    await mongoose.connect(process.env.DB_URI);
+    console.log(`MongoDB connected`);
   } catch (err) {
     console.log("Error : " + err.message);
     process.exit(1);

@@ -4,7 +4,7 @@ const helpSchema = new mongoose.Schema(
   {
     postedBy: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Profile",
       required: true,
     },
     title: {
@@ -20,7 +20,10 @@ const helpSchema = new mongoose.Schema(
     images: { type: [String], default: [] },
     category: { type: String, trim: true },
     tags: { type: [String], default: [] },
-    comments: { type: [mongoose.Schema.Types.ObjectId], ref: "Comment", default: [] },
+    comments: {
+      type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
+      default: [],
+    },
   },
   {
     timestamps: true,
@@ -28,5 +31,6 @@ const helpSchema = new mongoose.Schema(
 );
 
 helpSchema.index({ category: 1 });
+helpSchema.index({ title: "text", description: "text", tags: "text" });
 
-export default mongoose.model("Help", helpSchema);
+export default mongoose.models.Help || mongoose.model("Help", helpSchema);
