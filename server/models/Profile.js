@@ -5,6 +5,7 @@ const profileSchema = new mongoose.Schema(
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+      required: true,
     },
     rollNumber: {
       type: Number,
@@ -13,7 +14,6 @@ const profileSchema = new mongoose.Schema(
     },
     displayName: {
       type: String,
-      required: true,
     },
     profilePicURL: {
       type: String,
@@ -26,7 +26,6 @@ const profileSchema = new mongoose.Schema(
     },
     branch: {
       type: String,
-      required: true,
     },
     role: {
       type: String,
@@ -37,10 +36,7 @@ const profileSchema = new mongoose.Schema(
     skills: {
       type: [String],
       default: [],
-      validate: [
-        (arr) => arr.length <= 15,
-        "Only 15 skills are allowed",
-      ],
+      validate: [(arr) => arr.length <= 15, "Only 15 skills are allowed"],
     },
     following: [{ type: mongoose.Schema.Types.ObjectId, ref: "Profile" }],
     helpsAsked: [{ type: mongoose.Schema.Types.ObjectId, ref: "Help" }],

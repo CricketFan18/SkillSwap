@@ -13,8 +13,8 @@ export function verifyToken(token) {
   return jwt.verify(token, process.env.JWT_KEY);
 }
 
-export function generateIdCookie(result, res) {
-  res.cookie("id", result.token, {
+export function generateIdCookie(token, res) {
+  res.cookie("id", token, {
     maxAge: 1000 * 60 * 60 * 24 * 7,
     httpOnly: true,
     secure: true,
