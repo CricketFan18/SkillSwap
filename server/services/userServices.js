@@ -25,7 +25,7 @@ export async function registerUser(data) {
   });
 
   const user = await newUser.save();
-  const profile = await createProfile(user._id);
+  const profile = await createProfile(user._id,email);
   user.profileId = profile._id;
   await user.save();
 

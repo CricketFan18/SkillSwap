@@ -29,3 +29,10 @@ export function clearIdCookie(res) {
     sameSite: "none",
   });
 }
+
+export function handleValidationError(safeData) {
+  if (!safeData.success) {
+    const errors = safeData.error.issues.map((e) => e.message).join(", ");
+    throw new Error(errors);
+  }
+}

@@ -5,7 +5,8 @@ import { userSchema } from "../validators/userSchema.js";
 export async function addUser(req, res) {
   const safeData = await userSchema.safeParse(req.body);
   if (!safeData.success) {
-    throw new Error(safeData.error.issues[0].message);
+    const errors = safeData.error.issues.map((e) => e.message).join(", ");
+    throw new Error(errors);
   }
   const result = await userService.registerUser(safeData.data);
   generateIdCookie(result.token, res);
@@ -14,8 +15,9 @@ export async function addUser(req, res) {
 
 export async function login(req, res) {
   const safeData = await userSchema.safeParse(req.body);
-   if (!safeData.success) {
-    throw new Error(safeData.error.issues[0].message);
+  if (!safeData.success) {
+    const errors = safeData.error.issues.map((e) => e.message).join(", ");
+    throw new Error(errors);
   }
   const { email, password } = safeData.data;
   const result = await userService.loginUser(email, password);
@@ -27,7 +29,7 @@ export async function login(req, res) {
 
 export async function logout(req, res) {
   clearIdCookie(res);
-  await userService.logoutUser(req.user.userId);
+  await userService.logoutUser(res.userId);
   res
     .status(200)
     .json({ success: true, message: "User Logged Out Succesfully" });
