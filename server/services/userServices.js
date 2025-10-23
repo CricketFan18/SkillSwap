@@ -12,7 +12,7 @@ async function chechExistingUser(email) {
 
 /**
  * @param {Object} data - The user data containing email, password
- * @returns {Object} - An object containing userId and JWT token
+ * @returns {Promise<Object>} - An object containing userId and JWT token
  */
 export async function registerUser(data) {
   const { email, password } = data;
@@ -39,7 +39,7 @@ export async function registerUser(data) {
 /**
  * @param {String} email
  * @param {String} password
- * @returns {Object} - An object containing userId, profileId, and token
+ * @returns {Promise<Object>} - An object containing userId, profileId, and token
  */
 
 export async function loginUser(email, password) {

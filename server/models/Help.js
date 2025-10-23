@@ -30,6 +30,7 @@ const helpSchema = new mongoose.Schema(
   }
 );
 
+helpSchema.index({ createdAt: -1 });
 helpSchema.index({ category: 1 });
 helpSchema.index({ title: "text", description: "text", tags: "text" });
 
