@@ -17,8 +17,17 @@ const helpSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    status: {
+      type: String,
+      enum: ["Open", "In-Progress", "Closed"],
+      default: "Open",
+    },
     images: { type: [String], default: [] },
-    category: { type: String, trim: true },
+    category: {
+      type: String,
+      trim: true,
+      enum: ['Coding', 'Design', 'Academic', 'Project', 'Career', 'Other']
+    },
     tags: { type: [String], default: [] },
     comments: {
       type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],

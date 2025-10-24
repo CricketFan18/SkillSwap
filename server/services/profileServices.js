@@ -23,7 +23,7 @@ export async function createProfile(userId, email) {
  * @param {String} profileId - ID of the profile to be updated
  * @param {Promise<Object>} updateData  - Object {
  * displayName: String,
- * profilePicURL: String,
+ * avatar: String,
  * bio: String,
  * skills: [String],
  * }
