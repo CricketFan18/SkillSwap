@@ -1,19 +1,14 @@
 import * as userService from "../services/userServices.js";
-import { generateIdCookie, clearIdCookie, handleValidationError } from "../utils/misc.js";
-import { userSchema } from "../validators/userSchema.js";
-
+import { generateIdCookie, clearIdCookie } from "../utils/misc.js";
 export async function addUser(req, res) {
-  const safeData = await userSchema.safeParse(req.body);
-  handleValidationError(safeData);
-  const result = await userService.registerUser(safeData.data);
+  const data = req.validatedData;
+  const result = await userService.registerUser(data);
   generateIdCookie(result.token, res);
   res.status(201).json({ success: true, message: "User Created Succesfully" });
 }
 
 export async function login(req, res) {
-  const safeData = await userSchema.safeParse(req.body);
-  handleValidationError(safeData);
-  const { email, password } = safeData.data;
+  const { email, password } = req.validatedData;
   const result = await userService.loginUser(email, password);
   generateIdCookie(result.token, res);
   res

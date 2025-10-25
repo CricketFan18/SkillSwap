@@ -3,7 +3,7 @@ import Help from "../models/Help.js";
 /**
  * Creates a new Help Request
  * @param {ObjectId} postedBy ID of the help creator
- * @param {Object} data Object containing { title , description , category , [ -images ] , [ -tages ] }
+ * @param {Object} data Object containing { title , description , category , [ -images ] , [ -tags ] }
  * @returns {Promise<Object>} The created help post
  */
 export async function createHelp(postedBy, data) {
@@ -31,22 +31,24 @@ export async function updateHelp(postId, data) {
     new: true,
     runValidators: true,
   });
-  if (!profile) throw new Error("Profile not found");
+  if (!updatedPost) throw new Error("Profile not found");
   return updatedPost;
 }
 
 /**
  * Fetches the latest help posts or filtered posts if filter provided
- * @param {Number} pageNo page no (1 based)
+ * @param {Number} page page no (1 based)
  * @param {Number} limit max help posts per page
  * @param {Object} filter find documents using this filter
  * @returns {Promise<Object>} The limit number of help posts ( default 10)
  */
-export async function getLatestHelps(pageNo = 1, limit = 10, filter = {}) {
+export async function getLatestHelps(page,limit,filter ) {
   const count = await Help.countDocuments();
+  page = parseInt(page) || 1 ;
+  limit = parseInt(limit) || 10;
   const totalPages = Math.ceil(count / limit);
-  const skip = (pageNo - 1) * limit;
-  const posts = await Help.find()
+  const skip = (page - 1) * limit;
+  const posts = await Help.find(filter)
     .sort({ createdAt: -1 })
     .skip(skip)
     .limit(limit)
@@ -55,7 +57,7 @@ export async function getLatestHelps(pageNo = 1, limit = 10, filter = {}) {
   return {
     totalPosts: count,
     totalPages,
-    currentPage: pageNo,
+    currentPage: page,
     data: posts,
   };
 }
@@ -83,8 +85,9 @@ export async function deleteHelp(postId) {
 /**
  * for admin control
  */
-export async function getAllHelps() {
-  const data = await Help.find()
+export async function getAllHelps(filter) {
+  const data = await Help.find(filter)
     .sort({ createdAt: -1 })
-    .populate("postedBy", "name avatar branch batch");
+    .populate("postedBy", "displayName avatar branch batch");
+    return data;
 }

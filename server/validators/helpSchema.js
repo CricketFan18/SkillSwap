@@ -1,4 +1,4 @@
-import z from zod;
+import z from "zod";
 
 export const helpSchema = z.object({
   title: z.string().trim().max(100),

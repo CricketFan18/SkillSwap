@@ -7,13 +7,13 @@ export async function updateProfile(req, res) {
     profileId,
     updateData
   );
-  res.status(200).json(updatedProfile);
+  res.status(201).json(updatedProfile);
 }
 
 export async function deleteProfile(req, res) {
   const profileId = req.profileId;
   await profileService.deleteProfile(profileId);
-  res.status(200).json({ message: "Profile deleted successfully" });
+  res.status(204).json({ message: "Profile deleted successfully" });
 }
 
 export async function getProfile(req, res) {
@@ -33,5 +33,5 @@ export async function removeSkill(req, res) {
   const profileId = req.profileId;
   const { skills } = req.validatedData;
   const updatedProfile = await profileService.removeSkill(profileId, skills);
-  res.status(200).json(updatedProfile);
+  res.status(204).json(updatedProfile);
 }

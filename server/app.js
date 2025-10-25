@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes.js";
 import profileRoutes from "./routes/profileRoutes.js";
+import helpRoutes from "./routes/helpRoutes.js"
 import connectDB from "./config/db.js";
 import cookieParser from "cookie-parser";
 dotenv.config();
@@ -17,6 +18,7 @@ app.use(cookieParser());
 
 app.use("/api/user", userRoutes);
 app.use("/api/profile", profileRoutes);
+app.use("/api/help", helpRoutes);
 
 app.use((req, res, next) => {
   const err = new Error("Not Found");

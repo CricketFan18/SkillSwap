@@ -12,14 +12,14 @@ import {
 
 const router = express.Router();
 
-router.put("/update", authenticate, validate(profileSchema),  updateProfile);
+router.patch("/update", authenticate, validate(profileSchema),  updateProfile);
 
 router.delete("/delete", authenticate, deleteProfile);
 
 router.get("/:id", authenticate, getProfile);
 
-router.put("/add-skill", authenticate, validate(profileSchema), addSkill);
+router.patch("/add-skill", authenticate, validate(profileSchema), addSkill);
 
-router.put("/remove-skill", authenticate, validate(profileSchema), removeSkill);
+router.delete("/remove-skill", authenticate, validate(profileSchema), removeSkill);
 
 export default router;
