@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+* {
+  font-family: "Scope One", serif;
+  font-style: normal;
+}
+.material-symbols-outlined {
+  font-size: inherit;
+}
