@@ -1,13 +1,28 @@
-import './App.css'
-import Home from './pages/Home'
+import { Route,Routes } from "react-router";
+import Layout from "./components/Layout";
+import Chats from "./pages/Chats";
+import Activity from "./pages/Activity";
+import YourInputs from "./pages/YourInputs";
+import CreatePost from "./pages/CreatePost";
+import Profile from "./pages/Profile";
+import Home from "./pages/Home";
 
-
-function App() {
+const App = () => {
   return (
-   <>
-     <Home />
-   </>
-  )
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="chats" element={<Chats />} />
+          <Route path="activity" element={<Activity />} />
+          <Route path="inputs" element={<YourInputs />} />
+          <Route path="create" element={<CreatePost />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="*" element={<div>404 Not Found</div>} />
+        </Route>
+      </Routes>
+    </>
+  );
 }
 
-export default App
+export default App;
