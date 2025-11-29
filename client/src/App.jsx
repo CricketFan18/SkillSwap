@@ -6,11 +6,13 @@ import YourInputs from "./pages/YourInputs";
 import CreatePost from "./pages/CreatePost";
 import Profile from "./pages/Profile";
 import Home from "./pages/Home";
+import LandingPage from "./pages/LandingPage";
 
 const App = () => {
   return (
     <>
       <Routes>
+        <Route path="/login" element={<LandingPage />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="chats" element={<Chats />} />
