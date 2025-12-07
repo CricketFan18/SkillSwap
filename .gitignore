@@ -4,6 +4,7 @@ node_modules/
 # Optional eslint cache
 .eslintcache
 
+*.png
 # Output of 'npm pack'
 *.tgz
 
