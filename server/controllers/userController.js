@@ -1,5 +1,6 @@
 import * as userService from "../services/userServices.js";
 import { generateIdCookie, clearIdCookie } from "../utils/misc.js";
+
 export async function addUser(req, res) {
   const data = req.validatedData;
   const result = await userService.registerUser(data);

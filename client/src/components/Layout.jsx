@@ -13,7 +13,7 @@ const Layout = () => {
       <Navbar />
       <Sidebar  toggleSidebar={toggleSidebar} />
       <div className="flex">
-        <main className={`relative flex-1 px-2 transition-all duration-300 ease-in-out pt-18`}>
+        <main className={`relative flex-1 px-2 transition-all duration-300 ease-in-out py-18`}>
          <Outlet/>
         </main>
       </div>
