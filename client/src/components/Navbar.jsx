@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import profilePic from '/profile.png';
-// --- Navbar Component ---
-// We've added a 'toggleSidebar' prop, which is a function passed down from App
 const Navbar = ({ toggleSidebar }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -19,11 +17,9 @@ const Navbar = ({ toggleSidebar }) => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full z-20 h-16 flex justify-between items-center p-3 shadow-md bg-white">
-      {/* Left Side: Logo & NEW Hamburger Button */}
+    <nav className="fixed top-0 left-0 w-full z-20 h-16 flex justify-between items-center p-3 shadow-md bg-white">
+      {/* Left Side: Logo & Hamburger Button */}
       <div className="flex pl-4 gap-4 items-center">
-        {/* --- NEW HAMBURGER BUTTON --- */}
-        {/* This button calls the 'toggleSidebar' function from the App component */}
         <button
           onClick={toggleSidebar}
           className="p-2 rounded-full hover:bg-gray-100 text-2xl"
@@ -31,8 +27,6 @@ const Navbar = ({ toggleSidebar }) => {
         >
           <span className="material-symbols-outlined">menu</span>
         </button>
-        
-        {/* --- Logo --- */}
         <div className="flex gap-3 items-center">
           <button className="text-3xl">
             <span className="material-symbols-outlined">person_play</span>
@@ -42,7 +36,7 @@ const Navbar = ({ toggleSidebar }) => {
       </div>
 
       {/* Middle: Search Bar */}
-      <div className="relative">
+      {/* <div className="relative">
         <span
           className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer"
           onClick={handleSearchSubmit}
@@ -57,21 +51,21 @@ const Navbar = ({ toggleSidebar }) => {
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyDown={handleKeyDown}
         />
-      </div>
+      </div> */}
 
       {/* Right Side: Actions & Profile */}
       <div className="flex items-center gap-4 pr-10">
-        <button className="flex items-center justify-center gap-1 font-semibold bg-gray-900 text-white hover:bg-gray-700 px-4 py-2 rounded-full">
+        {/* <button className="flex items-center justify-center gap-1 font-semibold bg-gray-900 text-white hover:bg-gray-700 px-4 py-2 rounded-full">
           <span className="material-symbols-outlined">add</span>
           Create
-        </button>
+        </button> */}
         <img
           src={profilePic}
           alt="profile pic"
           className="h-10 w-10 rounded-full"
         />
       </div>
-    </div>
+    </nav>
   );
 };
 
