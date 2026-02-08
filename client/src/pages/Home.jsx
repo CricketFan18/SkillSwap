@@ -1,13 +1,8 @@
-import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
-import { useState } from "react";
+import Post from "../components/Post.jsx";
+import { data } from "../context/dummy.js";
 
-function App() {
-  const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
-  const toggleSidebar = () => {
-    setIsSidebarExpanded(!isSidebarExpanded);
-  };
-
+function Home() {
+  const posts = data;
   return (
     <div className="relative min-h-screen bg-gray-50">
       <Navbar toggleSidebar={toggleSidebar} />
@@ -25,4 +20,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

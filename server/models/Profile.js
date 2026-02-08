@@ -24,9 +24,6 @@ const profileSchema = new mongoose.Schema(
       default: "",
       maxlength: 300,
     },
-    branch: {
-      type: String,
-    },
     role: {
       type: String,
       enum: ["user", "moderator", "admin"],

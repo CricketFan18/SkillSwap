@@ -1,13 +1,13 @@
+import { NavLink } from "react-router";
+
 const navItems = [
-  { name: "Chats", icon: "chat" },
-  { name: "Activity", icon: "insights" },
-  { name: "Your Offers", icon: "local_offer" },
-  { name: "Notifications", icon: "notifications" },
+  { name: "Home", icon: "home",path:"/" },
+  { name: "Chats", icon: "chat", path:"/chats" },
+  { name: "Activity", icon: "insights", path:"/activity" },
+  { name: "Your Inputs", icon: "diversity_1", path:"/inputs" },
 ];
 
-const logoutItem = { name: "Logout", icon: "logout" };
-
-const Sidebar = ({ isExpanded }) => {
+const Sidebar = () => {
   return (
     <nav
       className={`fixed bottom-0  bg-white shadow-lg justify-between z-10 py-6 px-4`} >
